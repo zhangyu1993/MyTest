@@ -1,0 +1,5 @@
+<!--pages/Home/home.wxml-->
+<view>
+<text style='center'>这是首页啊首页</text>
+</view>
+

@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/company/company",
+    "pages/me/me"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "职位",
+        "iconPath": "/image/icon_tab_chat_normal.png",
+        "selectedIconPath": "/image/icon_tab_chat_selected.png"
+      },
+      {
+        "pagePath": "pages/company/company",
+        "text": "公司",
+        "iconPath": "/image/icon_tab_home_normal.png",
+        "selectedIconPath": "/image/icon_tab_home_selected.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "/image/icon_tab_me_normal.png",
+        "selectedIconPath": "/image/icon_tab_me_selected.png"
+      }
+    ],
+    "selectedColor": "#0059FF",
+    "color": "#000000",
+    "borderStyle": "white"
+  }
+}
