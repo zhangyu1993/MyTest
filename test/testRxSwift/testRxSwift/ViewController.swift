@@ -41,8 +41,6 @@ class ViewController: UIViewController {
             print(music.description)
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         
-        
-        
         let buttons = [rxButton, rxButton2, rxButton3].map { $0! }
         
         let selectedBtn = Observable.from(buttons.map({ (btn) in
@@ -56,23 +54,21 @@ class ViewController: UIViewController {
             }).disposed(by: disposeBag)
         }
         
-        let swipe = UISwipeGestureRecognizer()
-        swipe.direction = .up
-        self.view.addGestureRecognizer(swipe)
-   
-        var a = Section1(headerTitle: "1", model: Person(name: "张三", age: 1), item: [Section1(headerTitle: "1.1", model: Person(name: "张三的儿子", age: 2), item: [])])
+        getp("0").subscribe { (event) in
+            switch event {
+            case .success(let json):
+                print(json)
+            case .error(let err):
+                print(err)
+            }
+        }.disposed(by: disposeBag)
         
-        let b = Section1(headerTitle: "2", model: Animal(name: "狗", age: 3), item: [Section1(headerTitle: "2.2", model: Animal(name: "小狗", age: 4), item: [])])
-        
-        for item in a.item {
-            print(item.model.name)
-        }
-        for item in b.item {
-            print(item.model.name)
-        }
-        
-        a.headerTitle = "3"
-        print(a.headerTitle)
+        let results = rxTextField.rx.text.asDriver()
+            .throttle(0.3)
+            .flatMapLatest{self.getp($0!).asDriver(onErrorJustReturn: [:])}
+        results.drive(onNext: { (item) in
+            print(item)
+        }).disposed(by: disposeBag)
         
     }
 
@@ -104,9 +100,33 @@ class ViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
+    func getp(_ channel: String) -> Single<[String:Any]> {
+        return Single<[String:Any]>.create(subscribe: { (single) -> Disposable in
+            let url = "https://douban.fm/j/mine/playlist?"
+                + "type=n&channel=\(channel)&from=mainsite"
+            let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { (data, res, err) in
+                if let e = err {
+                    single(.error(e))
+                    return
+                }
+                guard let d = data, let json = try? JSONSerialization.jsonObject(with: d, options: .mutableLeaves), let result = json as? [String:Any] else {
+                    single(.error(DataError.cantParseJSON))
+                    return
+                }
+                single(.success(result))
+            })
+            task.resume()
+            return Disposables.create { task.cancel() }
+        })
+    }
 
 }
 
+
+//与数据相关的错误类型
+enum DataError: Error {
+    case cantParseJSON
+}
 
 struct MusicListViewModel {
     let data = Observable.just([
@@ -125,27 +145,3 @@ extension UILabel {
         })
     }
 }
-
-protocol ZYSection {
-    associatedtype ItemType
-    var headerTitle: String { get }
-    var model: ItemType { set get }
-    var item: [Self] { set get }
-}
-
-struct Section1<T>: ZYSection {
-    var headerTitle: String
-    var model: T
-    var item: [Section1]
-}
-
-struct Person {
-    let name: String
-    let age: Int
-}
-
-struct Animal {
-    let name: String
-    let age: Int
-}
-

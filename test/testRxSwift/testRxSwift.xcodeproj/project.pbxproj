@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,8 @@
 		161DAA4CA17AD9960BFF909D /* Pods-testRxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testRxSwift.release.xcconfig"; path = "Target Support Files/Pods-testRxSwift/Pods-testRxSwift.release.xcconfig"; sourceTree = "<group>"; };
 		2A108D2F22F2BABF0067BDA2 /* TestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewController.swift; sourceTree = "<group>"; };
 		2A108D3122F2BF860067BDA2 /* libRxCocoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRxCocoa.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A108D3322F3DC610067BDA2 /* libMJRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMJRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A108D3522F3DD350067BDA2 /* testRxSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "testRxSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		2A1EF7E3229FAA2C00B2B50A /* testRxSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testRxSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1EF7E6229FAA2C00B2B50A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A1EF7E8229FAA2C00B2B50A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				2A1EF7ED229FAA2D00B2B50A /* Assets.xcassets */,
 				2A1EF7EF229FAA2D00B2B50A /* LaunchScreen.storyboard */,
 				2A1EF7F2229FAA2D00B2B50A /* Info.plist */,
+				2A108D3522F3DD350067BDA2 /* testRxSwift-Bridging-Header.h */,
 			);
 			path = testRxSwift;
 			sourceTree = "<group>";
@@ -81,6 +84,7 @@
 		918DACE1F66C474FD38A9A11 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A108D3322F3DC610067BDA2 /* libMJRefresh.a */,
 				2A108D3122F2BF860067BDA2 /* libRxCocoa.a */,
 				D290A8B11D0EAE5696B7CAFE /* libPods-testRxSwift.a */,
 			);
@@ -130,6 +134,7 @@
 				TargetAttributes = {
 					2A1EF7E2229FAA2C00B2B50A = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1030;
 					};
 				};
 			};
@@ -361,6 +366,7 @@
 			baseConfigurationReference = 0628D3F537922F57008E74C9 /* Pods-testRxSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = testRxSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -369,6 +375,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zy.testRxSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "testRxSwift/testRxSwift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -379,6 +387,7 @@
 			baseConfigurationReference = 161DAA4CA17AD9960BFF909D /* Pods-testRxSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = testRxSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -387,6 +396,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zy.testRxSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "testRxSwift/testRxSwift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
